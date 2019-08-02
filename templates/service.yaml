@@ -12,6 +12,9 @@ metadata:
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
+{{- if .Values.ingress.enabled -}}
+    fabric8.io/exposeUrl: {{ .Values.ingress.host }}
+{{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
